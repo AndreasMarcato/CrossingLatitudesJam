@@ -140,11 +140,11 @@ AudioMixerController:
   - guid: c09dacaf4ca50af4a8394266d61a2b36
     name: MyExposedParam 9
   - guid: aecd17a102648554ab365ab1508d1c6f
-    name: MyExposedParam
+    name: Track1
   - guid: 29a8e3fbb4fc1704fb3545b11a6fecc4
-    name: MyExposedParam 1
+    name: Track2
   - guid: 710df32b97162294cb81092b74c4ca6d
-    name: MyExposedParam 2
+    name: Track3
   - guid: f9dbc60354e5a364d8ae361152cd8e14
     name: MyExposedParam 3
   - guid: a1a184cd5731360479d9ea66229b5c86
