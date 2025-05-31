@@ -9,15 +9,16 @@ using UnityEngine.UIElements;
 [CreateAssetMenu(fileName = "EventManager", menuName = "Scriptable Objects/Managers SO/EventManager")]
 public class EventManagerSO : ScriptableObject
 {
+    public event Action onGameStartEvent;
 
     public event Action onInteractCube;
     public event Action onInteractionProp;
-    public event Action<string> onInteractNPC;
 
+    public event Action<string> onInteractNPC;
+    public event Action onPauseEvent;
 
     public GameObject playerReference;
 
-    
     public void CubeInteract()
     {
         onInteractCube?.Invoke();
@@ -42,6 +43,7 @@ public class EventManagerSO : ScriptableObject
     {
         // START CUTSCENE
         ActivatePlayerInput();
+        onGameStartEvent?.Invoke();
     }
 
 
@@ -54,7 +56,10 @@ public class EventManagerSO : ScriptableObject
         playerReference.GetComponent<PlayerInput>().currentActionMap.Disable();
     }
 
-
+    public void Pause()
+    {
+        onPauseEvent?.Invoke();
+    }
 }
 
 [UxmlElement]

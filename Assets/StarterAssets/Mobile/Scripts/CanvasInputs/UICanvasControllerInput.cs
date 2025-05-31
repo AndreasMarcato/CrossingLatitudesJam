@@ -33,6 +33,11 @@ namespace StarterAssets
             starterAssetsInputs.InteractInput(virtualInteractState);
         }
 
+        public void VirtualPauseInput(bool virtualPauseState)
+        {
+            starterAssetsInputs.PauseInput(virtualPauseState);
+        }
+
     }
 
 }

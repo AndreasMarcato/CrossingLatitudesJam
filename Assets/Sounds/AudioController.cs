@@ -28,7 +28,7 @@ public class AudioController : MonoBehaviour
 
     private readonly string[] trackVolumeParams = new string[]
     {
-        "Track0",
+        "MainMenuLoop",
         "Track1",
         "Track2",
         "Track3",
@@ -50,9 +50,9 @@ public class AudioController : MonoBehaviour
     private void OnEnable()
     {
         eventManager.onInteractCube += HandleVolumeTrack1;
+        eventManager.onGameStartEvent += MainMenuLoopVolume;
     }
 
-   
 
     private void OnDisable()
     {
@@ -61,6 +61,10 @@ public class AudioController : MonoBehaviour
 
 
     #region VOLUME TRACK HANDLERS
+    private void MainMenuLoopVolume()
+    {
+        SetTrackVolume(trackVolumeParams[0], 0f);
+    }
     private void HandleVolumeTrack1()
     {
         SetTrackVolume(trackVolumeParams[1], 1f);

@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class UIController : MonoBehaviour
@@ -8,17 +9,30 @@ public class UIController : MonoBehaviour
 
     public VisualElement uiRoot;
 
+    public VisualElement mainMenuRoot;
+
     public Button playButton;
     public Button settingsButton;
     public Button exitButton;
 
+    public VisualElement pauseRoot;
+
+    public Button resumeButton;
+    public Button quitToMenuButton;
+
+
     private void Awake()
     {
         uiRoot = GetComponent<UIDocument>().rootVisualElement;
+        
         eventManager.DeactivatePlayerInput();
     }
     private void OnEnable()
     {
+        // Main Menu
+        mainMenuRoot = uiRoot.Q<VisualElement>("MainMenuRootElement");
+        mainMenuRoot.visible = true;
+
         playButton = uiRoot.Q<Button>("StartButton");
         playButton.clicked += OnPlayButtonClicked;
 
@@ -27,20 +41,35 @@ public class UIController : MonoBehaviour
 
         exitButton = uiRoot.Q<Button>("ExitButton");
         exitButton.clicked += QuitToDesktopButtonClicked;
+
+
+        // Pause Menu
+        pauseRoot = uiRoot.Q<VisualElement>("PauseRootElement");
+        eventManager.onPauseEvent += PauseButtonClicked;
+        pauseRoot.visible = false;
+
+        resumeButton = uiRoot.Q<Button>("ResumeButton");
+        resumeButton.clicked += ResumeButtonClicked;
+        quitToMenuButton = uiRoot.Q<Button>("QuitoMenuButton");
+        quitToMenuButton.clicked += QuitToMenuButtonClicked; ;
     }
+
+    
 
     private void OnDisable()
     {
         playButton.clicked -= OnPlayButtonClicked;
         settingsButton.clicked -= OnSettingsButtonClicked;
         exitButton.clicked -= QuitToDesktopButtonClicked;
+        Time.timeScale = 1;
     }
-    #region UI BUTTON FUNCTIONS
+
+    #region UI MAIN MENU FUNCTIONS
     private void OnPlayButtonClicked()
     {
         Debug.Log("Start Game Button Clicked");
         eventManager.StartGame();
-        uiRoot.visible = false;
+        mainMenuRoot.visible = false;
     }
 
     private void OnSettingsButtonClicked()
@@ -57,5 +86,25 @@ public class UIController : MonoBehaviour
             EditorApplication.isPlaying = false;
         #endif
     }
+
+    #endregion
+
+    #region UI PAUSE MENU FUNCTIONS
+    private void PauseButtonClicked()
+    {
+        Time.timeScale = 0;
+        pauseRoot.visible = true;
+    }
+
+    private void ResumeButtonClicked()
+    {
+        Time.timeScale = 1;
+        pauseRoot.visible = false;
+    }
+    private void QuitToMenuButtonClicked()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
     #endregion
 }

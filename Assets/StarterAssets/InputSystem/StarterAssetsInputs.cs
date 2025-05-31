@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool interact;
+		public bool pause;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -22,7 +23,7 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 
 
-		
+		public EventManagerSO eventManager;
 
         // =========== INTERACTION =========
 
@@ -54,6 +55,10 @@ namespace StarterAssets
 		{
 			InteractInput(value.isPressed);
 		}
+		public void OnPause(InputValue value)
+		{
+			PauseInput(value.isPressed);
+        }
 
 #endif
 
@@ -83,6 +88,12 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
+
+		public void PauseInput(bool newPauseState)
+		{
+			pause = newPauseState;
+            eventManager.Pause();
+        }
 		
 		private void OnApplicationFocus(bool hasFocus)
 		{
