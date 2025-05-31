@@ -1,0 +1,11 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/styleTest.uss?fileID=7433441132597879392&amp;guid=6590b23dc5df38f4fafff94975386708&amp;type=3#styleTest" />
+    <engine:VisualElement name="RootContainer" style="flex-grow: 1;">
+        <engine:GroupBox style="width: auto; max-width: 400px; min-height: 600px; margin-top: 5%; margin-left: 5%; margin-right: 4%; margin-bottom: 2px; padding-bottom: 20%;">
+            <engine:VisualElement name="GameLogo" style="flex-grow: 1;" />
+            <engine:Button text="Start Game" name="StartButton" />
+            <engine:Button text="Settings" name="SettingsButton" />
+            <engine:Button text="Exit To Desktop" name="ExitButton" emoji-fallback-support="true" />
+        </engine:GroupBox>
+    </engine:VisualElement>
+</engine:UXML>

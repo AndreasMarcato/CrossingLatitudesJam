@@ -6,8 +6,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     private StarterAssets.StarterAssetsInputs input;
 
+    public EventManagerSO eventManager;
+
+
     private void Start()
     {
+        eventManager.playerReference = gameObject;
+
         input = GetComponent<StarterAssets.StarterAssetsInputs>();
         if (playerCamera == null)
         {
