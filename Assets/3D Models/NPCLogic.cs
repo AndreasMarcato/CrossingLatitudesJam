@@ -9,7 +9,8 @@ public class NPCLogic : MonoBehaviour, IInteractable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        dialogueIndex = 0;
+
     }
 
     // Update is called once per frame
@@ -19,7 +20,7 @@ public class NPCLogic : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        if (dialogueLines[dialogueIndex] == null)
+        if (dialogueLines[dialogueIndex+1] == null)
             return;
 
         eventManager.InteractNPC(dialogueLines[dialogueIndex]);
