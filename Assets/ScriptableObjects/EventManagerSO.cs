@@ -6,19 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EventManager", menuName = "Scriptable Objects/Managers SO/EventManager")]
 public class EventManagerSO : ScriptableObject
 {
-
-    public event Action onInteractCube;
-    public event Action onInteractionProp;
+    public event Action<int> onInteractionProp;
     public event Action<string> onInteractNPC;
-    
-    public void CubeInteract()
-    {
-        onInteractCube?.Invoke();
-    }
 
-    public void InteractProp()
+    public void PropInteract(int trackIndex)
     {
-        onInteractionProp?.Invoke();
+        onInteractionProp?.Invoke(trackIndex);
     }
 
     public void InteractNPC(string dialogueLine)
