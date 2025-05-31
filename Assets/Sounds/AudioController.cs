@@ -14,7 +14,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioMixerGroup sfxMixer;
     [SerializeField] private AudioMixerGroup bgmMixer;
 
-    [Header("Audio Clip Data")]
+    [Header("Audio Clip Data"), Tooltip("All the SFX you want to spawn in the Scene.")]
     [SerializeField] private List<AudioClipData> audioClipDatas;
 
     private Dictionary<string, AudioClipData> clipDataMap = new();
@@ -28,13 +28,14 @@ public class AudioController : MonoBehaviour
 
     private readonly string[] trackVolumeParams = new string[]
     {
-    "Volume_Track1",
-    "Volume_Track2",
-    "Volume_Track3",
-    "Volume_Track4",
-    "Volume_Track5",
-    "Volume_Track6",
-    "Volume_Track7"
+        "Track0",
+        "Track1",
+        "Track2",
+        "Track3",
+        "Track4",
+        "Track5",
+        "Track6",
+        "Track7"
     };
 
     private void Awake()
@@ -48,22 +49,48 @@ public class AudioController : MonoBehaviour
 
     private void OnEnable()
     {
-        eventManager.onCubeInteract += Track1VolumeTest;
+        eventManager.onInteractCube += HandleVolumeTrack1;
     }
 
    
 
     private void OnDisable()
     {
-        eventManager.onCubeInteract -= Track1VolumeTest;
+        eventManager.onInteractCube -= HandleVolumeTrack1;
     }
 
-    // Event handlers
-    private void Track1VolumeTest()
+
+    #region VOLUME TRACK HANDLERS
+    private void HandleVolumeTrack1()
     {
-        SetTrackVolume("Track1", 0f);
+        SetTrackVolume(trackVolumeParams[1], 1f);
     }
-    //=======
+    private void HandleVolumeTrack2()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    private void HandleVolumeTrack3()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    private void HandleVolumeTrack4()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    private void HandleVolumeTrack5()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    private void HandleVolumeTrack6()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    private void HandleVolumeTrack7()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    #endregion
+
 
     public void PlaySFX(string id)
     {
@@ -79,16 +106,33 @@ public class AudioController : MonoBehaviour
         Destroy(sfxSource.gameObject, clip.length / sfxSource.pitch + 0.1f);
     }
 
-    public void SetTrackVolume(string trackName, float normalizedVolume)
+    public void SetTrackVolume(string trackName, float targetNormalized)
     {
-        string parameterName = trackName;
-        float dB = Mathf.Lerp(-80f, 0f, Mathf.Clamp01(normalizedVolume));
+        StartCoroutine(LerpTrackVolume(trackName, targetNormalized, 2f));
+    }
 
-        bool success = mixer.SetFloat(parameterName, dB);
-        if (!success)
+    private IEnumerator LerpTrackVolume(string trackName, float targetNormalized, float duration)
+    {
+        if (!mixer.GetFloat(trackName, out float currentDb))
         {
-            Debug.LogWarning($"Failed to set volume. Exposed parameter '{parameterName}' may not exist in the AudioMixer.");
+            Debug.LogWarning($"Failed to get volume. Exposed parameter '{trackName}' may not exist.");
+            yield break;
         }
+
+        float startNormalized = Mathf.InverseLerp(-80f, 0f, currentDb);
+        float startTime = Time.time;
+
+        while (Time.time - startTime < duration)
+        {
+            float t = (Time.time - startTime) / duration;
+            float interpolated = Mathf.Lerp(startNormalized, targetNormalized, t);
+            float dB = Mathf.Lerp(-80f, 0f, interpolated);
+            mixer.SetFloat(trackName, dB);
+            yield return null;
+        }
+
+        float finalDb = Mathf.Lerp(-80f, 0f, targetNormalized);
+        mixer.SetFloat(trackName, finalDb);
     }
 
     public float GetTrackVolume(string trackName)

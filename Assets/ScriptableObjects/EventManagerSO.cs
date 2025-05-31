@@ -7,11 +7,25 @@ using UnityEngine;
 public class EventManagerSO : ScriptableObject
 {
 
-    public event Action onCubeInteract;
-
+    public event Action onInteractCube;
+    public event Action onInteractionProp;
+    public event Action<string> onInteractNPC;
     
     public void CubeInteract()
     {
-        onCubeInteract?.Invoke();
+        onInteractCube?.Invoke();
     }
+
+    public void InteractProp()
+    {
+        onInteractionProp?.Invoke();
+    }
+
+    public void InteractNPC(string dialogueLine)
+    {
+        onInteractNPC?.Invoke(dialogueLine);
+    }
+
+
+
 }

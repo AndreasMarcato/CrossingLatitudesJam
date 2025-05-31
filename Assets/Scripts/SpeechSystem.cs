@@ -18,27 +18,32 @@ public class SpeechSystem : MonoBehaviour
     private Coroutine typeTextCoroutine;
     private Coroutine shakeLettersCoroutine;
 
+
+
+    //added Event Manager
+    public EventManagerSO eventManager;
+
+
+
     void Start()
     {
         letterDelay = displayTime / fullText.Length;
         audioSource = GetComponent<AudioSource>();
-        StartSpeech();
     }
 
     void OnEnable()
     {
-        // Restart the speech when the object is activated
-        StartSpeech();
+        eventManager.onInteractNPC += StartSpeech;
     }
 
     void OnDisable()
     {
-        // Stop coroutines when the object is deactivated
-        StopSpeech();
+        eventManager.onInteractNPC -= StartSpeech;
     }
 
-    public void StartSpeech()
+    public void StartSpeech(string dialogueLine)
     {
+        fullText = dialogueLine;
         // Stop any existing coroutines to avoid duplicates
         StopSpeech();
 
