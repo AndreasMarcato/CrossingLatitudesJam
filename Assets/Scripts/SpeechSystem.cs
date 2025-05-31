@@ -20,11 +20,11 @@ public class SpeechSystem : MonoBehaviour
 
 
 
-    //added Event Manager
+    //added by Andreas Event Manager
     public EventManagerSO eventManager;
+    public DialogueUIController dialogueUIController;
 
-
-
+   
     void Start()
     {
         letterDelay = displayTime / fullText.Length;
@@ -43,27 +43,29 @@ public class SpeechSystem : MonoBehaviour
 
     public void StartSpeech(string dialogueLine)
     {
+        Debug.Log("StartSpeech triggered with line: " + dialogueLine);
+        dialogueUIController.ShowDialogue();
+
         fullText = dialogueLine;
-        // Stop any existing coroutines to avoid duplicates
         StopSpeech();
 
-        // Clear the text and start new coroutines
         textComponent.text = "";
         typeTextCoroutine = StartCoroutine(TypeText());
         shakeLettersCoroutine = StartCoroutine(ShakeLetters());
     }
 
+
+
     public void StopSpeech()
     {
         if (typeTextCoroutine != null)
-        {
             StopCoroutine(typeTextCoroutine);
-        }
+        
         if (shakeLettersCoroutine != null)
-        {
             StopCoroutine(shakeLettersCoroutine);
-        }
+
     }
+
 
     IEnumerator TypeText()
     {
@@ -90,6 +92,9 @@ public class SpeechSystem : MonoBehaviour
 
             yield return new WaitForSeconds(letterDelay);
         }
+
+        yield return new WaitForSeconds(2f);
+        dialogueUIController.HideDialogue();
     }
 
     IEnumerator ShakeLetters()
