@@ -232,11 +232,10 @@ MonoBehaviour:
   shakeIntensity: 2
   shakeSpeed: 0.05
   talkSounds:
-  - {fileID: 8300000, guid: eb7cc3f3189051841bda409c2fca8c55, type: 3}
-  - {fileID: 8300000, guid: 9d08fc102f703df47a3ca5778e99a103, type: 3}
-  - {fileID: 8300000, guid: b5ddb18f40c2430438a8c5946ee91b42, type: 3}
-  - {fileID: 8300000, guid: 110dfaf8a0c713c45be1dda6abf0ac73, type: 3}
-  - {fileID: 8300000, guid: 0a0c7b4bedae5dc46a02e949c327baa0, type: 3}
+  - {fileID: 8300000, guid: 16545882a453e9a4e89cc732cc43672d, type: 3}
+  - {fileID: 8300000, guid: 607a808b7548fba49aa9cdea71b58b1c, type: 3}
+  - {fileID: 8300000, guid: 3ae355f67728188429db4678b82bea90, type: 3}
+  - {fileID: 8300000, guid: 80ff96af29c8fcd47a721b53822bee9f, type: 3}
   eventManager: {fileID: 11400000, guid: 2253b7e9d6a07ab4a8a81d3d16e62262, type: 2}
   dialogueUIController: {fileID: 0}
 --- !u!82 &4720554568866496106

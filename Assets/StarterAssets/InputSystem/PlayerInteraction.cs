@@ -11,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Awake()
     {
-        eventManager.PlayerReference = transform;
+        GameObject.FindFirstObjectByType<ReferenceHandler>().playerReference = transform;
 
         input = GetComponent<StarterAssets.StarterAssetsInputs>();
         if (playerCamera == null)

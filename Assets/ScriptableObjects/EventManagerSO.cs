@@ -17,8 +17,7 @@ public class EventManagerSO : ScriptableObject
     public event Action<string> onInteractNPC;
     public event Action onPauseEvent;
 
-    private Transform playerReference;
-    public Transform PlayerReference { get { return playerReference; } set => playerReference = value; }
+    public ReferenceHandler referenceHandler;
 
     //UI
     public event Action<string> onSignifierUpdate;
@@ -47,19 +46,10 @@ public class EventManagerSO : ScriptableObject
     public void StartGame()
     {
         // START CUTSCENE
-        ActivatePlayerInput();
+        referenceHandler.ActivatePlayerInput();
         onGameStartEvent?.Invoke();
     }
 
-
-    public void ActivatePlayerInput()
-    {
-        playerReference.GetComponent<PlayerInput>().currentActionMap.Enable();
-    }
-    public void DeactivatePlayerInput()
-    {
-        playerReference.GetComponent<PlayerInput>().currentActionMap.Disable();
-    }
 
     public void Pause()
     {

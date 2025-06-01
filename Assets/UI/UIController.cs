@@ -26,7 +26,7 @@ public class UIController : MonoBehaviour
     {
         uiRoot = GetComponent<UIDocument>().rootVisualElement;
         
-        eventManager.DeactivatePlayerInput();
+        GameObject.FindFirstObjectByType<ReferenceHandler>().DeactivatePlayerInput();
     }
     private void Start()
     {

@@ -4,9 +4,19 @@ using UnityEngine;
 public class SignifierLogic : MonoBehaviour
 {
     [SerializeField] private Transform playerCamera;
+    [SerializeField] private Canvas canvas;
     [SerializeField] private TextMeshProUGUI signifierTextInteraction;
     public EventManagerSO eventManager;
 
+
+    [Tooltip("Minimum distance at which the Canvas becomes visible.")]
+    public float minVisibleDistance = 2f;
+
+    [Tooltip("Maximum distance at which the Canvas remains visible.")]
+    public float maxVisibleDistance = 10f;
+    
+    
+    
     void Start()
     {
         if (playerCamera == null && Camera.main != null)
@@ -30,9 +40,19 @@ public class SignifierLogic : MonoBehaviour
 
     void LateUpdate()
     {
-        if (playerCamera == null) return;
 
-        transform.LookAt(playerCamera);
-        transform.rotation = Quaternion.LookRotation(playerCamera.forward);
+        float distance = Vector3.Distance(transform.position, playerCamera.position);
+
+        // Enable the canvas only if the player is within the specified range.
+        bool inRange = (distance >= minVisibleDistance && distance <= maxVisibleDistance);
+        if (canvas.enabled != inRange)
+        {
+            canvas.enabled = inRange;
+        }
+        if (canvas.enabled)
+        {
+            transform.LookAt(playerCamera);
+            transform.rotation = Quaternion.LookRotation(playerCamera.forward);
+        }
     }
 }

@@ -46,8 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
+  canvas: {fileID: 4210006977916616673}
   signifierTextInteraction: {fileID: 7700133887503363745}
   eventManager: {fileID: 11400000, guid: 2253b7e9d6a07ab4a8a81d3d16e62262, type: 2}
+  minVisibleDistance: 2
+  maxVisibleDistance: 10
 --- !u!1 &2193497635169994584
 GameObject:
   m_ObjectHideFlags: 0
