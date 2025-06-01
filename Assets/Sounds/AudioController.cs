@@ -45,6 +45,8 @@ public class AudioController : MonoBehaviour
             if (!clipDataMap.ContainsKey(data.id))
                 clipDataMap.Add(data.id, data);
         }
+        for (int i = 1; i < trackVolumeParams.Length; i++)
+            SetTrackVolume(trackVolumeParams[i], 0f);
     }
 
     private void OnEnable()

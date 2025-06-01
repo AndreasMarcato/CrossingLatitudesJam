@@ -7,6 +7,7 @@ public class ReferenceHandler : MonoBehaviour
     private void Awake()
     {
         eventManager.referenceHandler = this;
+
     }
 
     public Transform playerReference;
