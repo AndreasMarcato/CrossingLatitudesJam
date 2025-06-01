@@ -72,7 +72,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: 4101618246018942387}
   m_UserColorIndex: 0
-  m_Mute: 1
+  m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
 --- !u!244 &-3479262530915441004
@@ -162,8 +162,8 @@ AudioMixerController:
   - {fileID: 24500006}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
-  m_EnableSuspend: 1
-  m_UpdateMode: 0
+  m_EnableSuspend: 0
+  m_UpdateMode: 1
   m_ExposedParameters:
   - guid: cb06e27f49c8c104086fffe29cd6f36c
     name: MyExposedParam 8
@@ -172,9 +172,9 @@ AudioMixerController:
   - guid: 0416dc7c94fbc7442a0dfb56ae8d9dce
     name: MainMenuLoop
   - guid: c92b17b131c0cfe4cb872429ebcc76bc
-    name: MyExposedParam 7
+    name: Master
   - guid: c09dacaf4ca50af4a8394266d61a2b36
-    name: MyExposedParam 9
+    name: SFX
   - guid: aecd17a102648554ab365ab1508d1c6f
     name: Track1
   - guid: 29a8e3fbb4fc1704fb3545b11a6fecc4
@@ -182,13 +182,13 @@ AudioMixerController:
   - guid: 710df32b97162294cb81092b74c4ca6d
     name: Track3
   - guid: f9dbc60354e5a364d8ae361152cd8e14
-    name: MyExposedParam 3
+    name: Track4
   - guid: a1a184cd5731360479d9ea66229b5c86
-    name: MyExposedParam 4
+    name: Track5
   - guid: 10120279844d6904392681c4cc7c5770
-    name: MyExposedParam 5
+    name: Track6
   - guid: 38549521e9e7e6a4c81fb3ac66bc0fd8
-    name: MyExposedParam 6
+    name: Track7
   m_AudioMixerGroupViews:
   - guids:
     - 89f3b36a0c32679479b8b46368488b8a
@@ -276,7 +276,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: -8304714046877064350}
   m_UserColorIndex: 0
-  m_Mute: 1
+  m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
 --- !u!244 &791056501341640514
@@ -323,7 +323,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: -4732746578516114524}
   m_UserColorIndex: 0
-  m_Mute: 1
+  m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
 --- !u!244 &4101618246018942387
@@ -441,7 +441,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: -7897608629460382817}
   m_UserColorIndex: 0
-  m_Mute: 1
+  m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
 --- !u!243 &8882605776822973223
@@ -460,7 +460,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: -6443667474252471386}
   m_UserColorIndex: 0
-  m_Mute: 1
+  m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
 --- !u!243 &9194208469127440677
@@ -479,6 +479,6 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: 4488050414020781815}
   m_UserColorIndex: 0
-  m_Mute: 1
+  m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
