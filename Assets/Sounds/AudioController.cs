@@ -49,15 +49,31 @@ public class AudioController : MonoBehaviour
 
     private void OnEnable()
     {
-        eventManager.onInteractCube += HandleVolumeTrack1;
+        //eventManager.onInteractCube += HandleVolumeTrack1;
+
+        eventManager.onInteractionProp += HandleVolumeTrack;
     }
 
    
 
     private void OnDisable()
     {
-        eventManager.onInteractCube -= HandleVolumeTrack1;
+        //eventManager.onInteractCube -= HandleVolumeTrack1;
+
+        eventManager.onInteractionProp -= HandleVolumeTrack;
     }
+
+
+    private void HandleVolumeTrack(int trackIndex)
+{
+    if (trackIndex < 0 || trackIndex >= trackVolumeParams.Length)
+    {
+        Debug.LogWarning($"Invalid track index: {trackIndex}");
+        return;
+    }
+
+    SetTrackVolume(trackVolumeParams[trackIndex], 1f);
+}
 
 
     #region VOLUME TRACK HANDLERS
