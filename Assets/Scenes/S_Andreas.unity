@@ -6260,7 +6260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827790373049513461, guid: d6da03cff154e4343a803bb2d2fb1751, type: 3}
       propertyPath: m_Name
-      value: Prop_Base
+      value: Piano
       objectReference: {fileID: 0}
     - target: {fileID: 5714056033662445952, guid: d6da03cff154e4343a803bb2d2fb1751, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6269,6 +6269,10 @@ PrefabInstance:
     - target: {fileID: 5714056033662445952, guid: d6da03cff154e4343a803bb2d2fb1751, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803067183055855767, guid: d6da03cff154e4343a803bb2d2fb1751, type: 3}
+      propertyPath: trackIndex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6342,7 +6346,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4273876730248418541, guid: 4074abe1c1a4aa74caf65de83f802352, type: 3}
       propertyPath: m_Name
-      value: Prop
+      value: Gramophone
       objectReference: {fileID: 0}
     - target: {fileID: 4403124459546593996, guid: 4074abe1c1a4aa74caf65de83f802352, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6383,6 +6387,10 @@ PrefabInstance:
     - target: {fileID: 4403124459546593996, guid: 4074abe1c1a4aa74caf65de83f802352, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8087224819485770127, guid: 4074abe1c1a4aa74caf65de83f802352, type: 3}
+      propertyPath: trackIndex
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -28,7 +28,7 @@ public class AudioController : MonoBehaviour
 
     private readonly string[] trackVolumeParams = new string[]
     {
-        "Track0",
+        "MainMenuLoop",
         "Track1",
         "Track2",
         "Track3",
@@ -45,35 +45,42 @@ public class AudioController : MonoBehaviour
             if (!clipDataMap.ContainsKey(data.id))
                 clipDataMap.Add(data.id, data);
         }
+
+        for (int i = 1; i < trackVolumeParams.Length; i++)
+        {
+            SetTrackVolume(trackVolumeParams[i], 0);
+        }
     }
 
     private void OnEnable()
     {
-        //eventManager.onInteractCube += HandleVolumeTrack1;
-
         eventManager.onInteractionProp += HandleVolumeTrack;
+        eventManager.onGameStartEvent += HandleGameStart;
     }
 
-   
+    private void HandleGameStart()
+    {
+        SetTrackVolume(trackVolumeParams[0], 0);
+    }
 
     private void OnDisable()
     {
-        //eventManager.onInteractCube -= HandleVolumeTrack1;
-
         eventManager.onInteractionProp -= HandleVolumeTrack;
+        eventManager.onGameStartEvent -= HandleGameStart;
+
     }
 
 
     private void HandleVolumeTrack(int trackIndex)
-{
-    if (trackIndex < 0 || trackIndex >= trackVolumeParams.Length)
     {
-        Debug.LogWarning($"Invalid track index: {trackIndex}");
-        return;
-    }
+        if (trackIndex < 0 || trackIndex >= trackVolumeParams.Length)
+        {
+            Debug.LogWarning($"Invalid track index: {trackIndex}");
+            return;
+        }
 
-    SetTrackVolume(trackVolumeParams[trackIndex], 1f);
-}
+        SetTrackVolume(trackVolumeParams[trackIndex], 1f);
+    }
 
 
     #region VOLUME TRACK HANDLERS

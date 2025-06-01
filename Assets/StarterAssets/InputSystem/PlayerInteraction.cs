@@ -27,15 +27,20 @@ public class PlayerInteraction : MonoBehaviour
             input.interact = false; // Reset flag
 
             Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, interactionDistance))
-            {
-                Debug.DrawLine(ray.origin, hit.point, Color.green, 1f);
-                Debug.Log("Ray hit: " + hit.collider.name);
+            RaycastHit[] hits = Physics.RaycastAll(ray, interactionDistance);
 
-                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-                if (interactable != null)
+            if (hits.Length > 0)
+            {
+                foreach (RaycastHit hit in hits)
                 {
-                    interactable.Interact();
+                    Debug.DrawLine(ray.origin, hit.point, Color.green, 1f);
+                    Debug.Log("Ray hit: " + hit.collider.name);
+
+                    IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+                    if (interactable != null)
+                    {
+                        interactable.Interact();
+                    }
                 }
             }
             else
@@ -45,4 +50,5 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
+
 }
