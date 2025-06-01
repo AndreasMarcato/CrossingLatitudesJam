@@ -1,3 +1,4 @@
+using InfinityCode.UltimateEditorEnhancer;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,7 +28,7 @@ public class UIController : MonoBehaviour
         
         eventManager.DeactivatePlayerInput();
     }
-    private void OnEnable()
+    private void Start()
     {
         // Main Menu
         mainMenuRoot = uiRoot.Q<VisualElement>("MainMenuRootElement");
@@ -51,7 +52,7 @@ public class UIController : MonoBehaviour
         resumeButton = uiRoot.Q<Button>("ResumeButton");
         resumeButton.clicked += ResumeButtonClicked;
         quitToMenuButton = uiRoot.Q<Button>("QuitoMenuButton");
-        quitToMenuButton.clicked += QuitToMenuButtonClicked; ;
+        quitToMenuButton.clicked += QuitToMenuButtonClicked;
     }
 
     
@@ -61,6 +62,11 @@ public class UIController : MonoBehaviour
         playButton.clicked -= OnPlayButtonClicked;
         settingsButton.clicked -= OnSettingsButtonClicked;
         exitButton.clicked -= QuitToDesktopButtonClicked;
+        
+        eventManager.onPauseEvent -= PauseButtonClicked;
+        resumeButton.clicked -= ResumeButtonClicked;
+        quitToMenuButton.clicked -= QuitToMenuButtonClicked;
+
         Time.timeScale = 1;
     }
 
@@ -92,6 +98,8 @@ public class UIController : MonoBehaviour
     #region UI PAUSE MENU FUNCTIONS
     private void PauseButtonClicked()
     {
+        Debug.Log("Pause Game Button Pressed");
+
         Time.timeScale = 0;
         pauseRoot.visible = true;
     }

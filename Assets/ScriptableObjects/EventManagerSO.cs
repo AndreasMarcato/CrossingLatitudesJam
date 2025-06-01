@@ -17,7 +17,12 @@ public class EventManagerSO : ScriptableObject
     public event Action<string> onInteractNPC;
     public event Action onPauseEvent;
 
-    public GameObject playerReference;
+    private Transform playerReference;
+    public Transform PlayerReference { get { return playerReference; } set => playerReference = value; }
+
+    //UI
+    public event Action<string> onSignifierUpdate;
+
 
     public void CubeInteract()
     {
@@ -59,6 +64,12 @@ public class EventManagerSO : ScriptableObject
     public void Pause()
     {
         onPauseEvent?.Invoke();
+    }
+
+    internal void UpdateTextSignifiers(string newSignifierText)
+    {
+        onSignifierUpdate?.Invoke(newSignifierText);
+        Debug.Log(newSignifierText);
     }
 }
 

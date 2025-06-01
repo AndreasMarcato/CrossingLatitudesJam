@@ -9,9 +9,9 @@ public class PlayerInteraction : MonoBehaviour
     public EventManagerSO eventManager;
 
 
-    private void Start()
+    private void Awake()
     {
-        eventManager.playerReference = gameObject;
+        eventManager.PlayerReference = transform;
 
         input = GetComponent<StarterAssets.StarterAssetsInputs>();
         if (playerCamera == null)

@@ -262,7 +262,7 @@
                 {
                     "name": "",
                     "id": "65785c46-e656-4bb3-869f-b60a1c242e12",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
