@@ -28,7 +28,7 @@ public class AudioController : MonoBehaviour
 
     private readonly string[] trackVolumeParams = new string[]
     {
-        "MainMenuLoop",
+        "Track0",
         "Track1",
         "Track2",
         "Track3",
@@ -45,37 +45,66 @@ public class AudioController : MonoBehaviour
             if (!clipDataMap.ContainsKey(data.id))
                 clipDataMap.Add(data.id, data);
         }
-        for (int i = 1; i < trackVolumeParams.Length; i++)
-        {
-            SetTrackVolume(trackVolumeParams[i], 0f);
-            Debug.LogError("Test");
-        }
     }
 
     private void OnEnable()
     {
+        //eventManager.onInteractCube += HandleVolumeTrack1;
+
         eventManager.onInteractionProp += HandleVolumeTrack;
-        eventManager.onGameStartEvent += MainMenuLoopVolume;
     }
 
+   
 
     private void OnDisable()
     {
+        //eventManager.onInteractCube -= HandleVolumeTrack1;
+
         eventManager.onInteractionProp -= HandleVolumeTrack;
-        eventManager.onGameStartEvent -= MainMenuLoopVolume;
     }
+
+
+    private void HandleVolumeTrack(int trackIndex)
+{
+    if (trackIndex < 0 || trackIndex >= trackVolumeParams.Length)
+    {
+        Debug.LogWarning($"Invalid track index: {trackIndex}");
+        return;
+    }
+
+    SetTrackVolume(trackVolumeParams[trackIndex], 1f);
+}
 
 
     #region VOLUME TRACK HANDLERS
-    private void MainMenuLoopVolume()
+    private void HandleVolumeTrack1()
     {
-        SetTrackVolume(trackVolumeParams[0], 0f);
+        SetTrackVolume(trackVolumeParams[1], 1f);
     }
-    private void HandleVolumeTrack(int id)
+    private void HandleVolumeTrack2()
     {
-        SetTrackVolume(trackVolumeParams[id], 1f);
+        SetTrackVolume(trackVolumeParams[1], 0f);
     }
-   
+    private void HandleVolumeTrack3()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    private void HandleVolumeTrack4()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    private void HandleVolumeTrack5()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    private void HandleVolumeTrack6()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
+    private void HandleVolumeTrack7()
+    {
+        SetTrackVolume(trackVolumeParams[1], 0f);
+    }
     #endregion
 
 

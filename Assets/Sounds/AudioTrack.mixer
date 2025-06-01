@@ -192,6 +192,7 @@ AudioMixerController:
   m_AudioMixerGroupViews:
   - guids:
     - 89f3b36a0c32679479b8b46368488b8a
+    - db52f072375f1c14db3daab6c38ecf43
     - f86b3ad9a940da54ea557d30af8f0b1c
     - e38916b177a72ef43a536a8330395555
     - df0183626f9a1a34c8f49e9651c638d9
@@ -199,7 +200,6 @@ AudioMixerController:
     - 5d4107528cd3af44d932c6f87c0cbf65
     - 0eec0b947761fc74695ce1c56f8ff4a1
     - c5713b404d9474e47b031edb0839ea68
-    - db52f072375f1c14db3daab6c38ecf43
     - 96e8c2dd87b41444e8b1a0b8809d8954
     - e669887dd654b8048be4a4688635aa4c
     - 0fc201da766810447b51450b211bb3be
