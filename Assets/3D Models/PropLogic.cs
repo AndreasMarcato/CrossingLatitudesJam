@@ -7,6 +7,8 @@ public class PropLogic : MonoBehaviour, IInteractable
     {
         Debug.Log($"{name} was interacted with!");
         // Example action:
-        eventManager.CubeInteract();
+        eventManager.InteractProp();
+
+        this.enabled = false;
     }
 }

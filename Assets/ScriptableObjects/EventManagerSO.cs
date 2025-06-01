@@ -11,26 +11,24 @@ public class EventManagerSO : ScriptableObject
 {
     public event Action onGameStartEvent;
 
-    public event Action onInteractCube;
-    public event Action onInteractionProp;
+    public event Action<int> onInteractionProp;
 
     public event Action<string> onInteractNPC;
     public event Action onPauseEvent;
 
     public ReferenceHandler referenceHandler;
 
+    int numberOfInteractions = 1;
+
     //UI
     public event Action<string> onSignifierUpdate;
 
 
-    public void CubeInteract()
-    {
-        onInteractCube?.Invoke();
-    }
 
     public void InteractProp()
     {
-        onInteractionProp?.Invoke();
+        onInteractionProp?.Invoke(numberOfInteractions);
+        numberOfInteractions++;
     }
 
     public void InteractNPC(string dialogueLine)
@@ -46,6 +44,7 @@ public class EventManagerSO : ScriptableObject
     public void StartGame()
     {
         // START CUTSCENE
+        numberOfInteractions = 1;
         referenceHandler.ActivatePlayerInput();
         onGameStartEvent?.Invoke();
     }

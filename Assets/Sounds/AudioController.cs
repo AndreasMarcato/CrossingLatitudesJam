@@ -54,14 +54,15 @@ public class AudioController : MonoBehaviour
 
     private void OnEnable()
     {
-        eventManager.onInteractCube += HandleVolumeTrack1;
+        eventManager.onInteractionProp += HandleVolumeTrack;
         eventManager.onGameStartEvent += MainMenuLoopVolume;
     }
 
 
     private void OnDisable()
     {
-        eventManager.onInteractCube -= HandleVolumeTrack1;
+        eventManager.onInteractionProp -= HandleVolumeTrack;
+        eventManager.onGameStartEvent -= MainMenuLoopVolume;
     }
 
 
@@ -70,34 +71,11 @@ public class AudioController : MonoBehaviour
     {
         SetTrackVolume(trackVolumeParams[0], 0f);
     }
-    private void HandleVolumeTrack1()
+    private void HandleVolumeTrack(int id)
     {
-        SetTrackVolume(trackVolumeParams[1], 1f);
+        SetTrackVolume(trackVolumeParams[id], 1f);
     }
-    private void HandleVolumeTrack2()
-    {
-        SetTrackVolume(trackVolumeParams[1], 0f);
-    }
-    private void HandleVolumeTrack3()
-    {
-        SetTrackVolume(trackVolumeParams[1], 0f);
-    }
-    private void HandleVolumeTrack4()
-    {
-        SetTrackVolume(trackVolumeParams[1], 0f);
-    }
-    private void HandleVolumeTrack5()
-    {
-        SetTrackVolume(trackVolumeParams[1], 0f);
-    }
-    private void HandleVolumeTrack6()
-    {
-        SetTrackVolume(trackVolumeParams[1], 0f);
-    }
-    private void HandleVolumeTrack7()
-    {
-        SetTrackVolume(trackVolumeParams[1], 0f);
-    }
+   
     #endregion
 
 
